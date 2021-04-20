@@ -42,10 +42,12 @@ class Player extends ObjectClass {
   }
 
   serializeForUpdate() {
+    const cardString = this.myCards.length ? this.myCards.join() : '-1';
     return {
       ...(super.serializeForUpdate()),
       direction: this.direction,
       hp: this.hp,
+      collectedcards: cardString
     };
   }
 

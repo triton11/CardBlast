@@ -12,7 +12,7 @@ const { PLAYER_RADIUS, PLAYER_MAX_HP, BULLET_RADIUS, CARD_WIDTH, MAP_SIZE } = Co
 const canvas = document.getElementById('game-canvas');
 const context = canvas.getContext('2d');
 setCanvasDimensions();
-
+const collectedcards = document.getElementById('collectedcards');
 
 const cardFills = ['grey', 'red', 'blue', 'green', 'purple']
 
@@ -49,6 +49,9 @@ function render() {
 
   // Draw cards
   cards.forEach(renderCard.bind(null, me));
+
+  // Update collected cards
+  updateCollectedcards(me);
 }
 
 function renderBackground(x, y) {
@@ -122,6 +125,18 @@ function renderCard(me, card) {
     canvas.width / 2 + x - me.x - CARD_WIDTH, 
     canvas.height / 2 + y - me.y - CARD_WIDTH / 2 + 30
   );
+}
+
+function updateCollectedcards(me) {
+  const myCards = me.collectedcards
+  const firstCard = myCards.split(',')[0]
+
+  if (firstCard === '-10') {
+    collectedcards.innerHTML = 'My Cards: '
+  } else {
+    // I have no idea why there is a zero appended to everything
+    collectedcards.innerHTML = 'My Cards: ' + cardList[(firstCard / 10) % cardList.length];
+  }
 }
 
 function renderMainMenu() {
