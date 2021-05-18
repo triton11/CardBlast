@@ -9,6 +9,7 @@ class Player extends ObjectClass {
     this.hp = Constants.PLAYER_MAX_HP;
     this.fireCooldown = 0;
     this.score = 0;
+    this.eats = 0;
     this.myCards = [];
   }
 
@@ -37,8 +38,17 @@ class Player extends ObjectClass {
     this.hp -= Constants.BULLET_DAMAGE;
   }
 
+  getEaten() {
+    this.hp = 0;
+  }
+
   onDealtDamage() {
-    this.score += Constants.SCORE_BULLET_HIT;
+    this.score += Constants.SCORE_CARD_BLAST;
+  }
+
+  onEatPlayer() {
+    this.eats += 1;
+    this.score -= Math.ceil(this.score / 2);
   }
 
   serializeForUpdate() {
@@ -46,7 +56,8 @@ class Player extends ObjectClass {
     return {
       ...(super.serializeForUpdate()),
       direction: this.direction,
-      hp: this.hp,
+      // hp: this.hp,
+      score: this.score,
       collectedcards: cardString
     };
   }
@@ -57,6 +68,10 @@ class Player extends ObjectClass {
 
   removeCard(cardId) {
     this.myCards = this.myCards.filter(c => c != cardId)
+  }
+
+  removeAllCards() {
+    this.myCards = []
   }
 
   addCard(cardId) {

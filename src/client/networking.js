@@ -37,3 +37,7 @@ export const play = username => {
 export const updateDirection = throttle(20, dir => {
   socket.emit(Constants.MSG_TYPES.INPUT, dir);
 });
+
+export const deleteCard = cardNumber => {
+  socket.emit(Constants.MSG_TYPES.DELETE_CARD, cardNumber);
+};

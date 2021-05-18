@@ -1,7 +1,7 @@
 const Constants = require('../shared/constants');
 const Player = require('./player');
 const Card = require('./card')
-const { applyCollisions, applyCardCollisions } = require('./collisions');
+const { applyCollisions, applyCardCollisions, applyPlayerCollisions } = require('./collisions');
 
 class Game {
   constructor() {
@@ -34,6 +34,14 @@ class Game {
   handleInput(socket, dir) {
     if (this.players[socket.id]) {
       this.players[socket.id].setDirection(dir);
+    }
+  }
+
+  deleteCard(socket, cardNumber) {
+    if (this.players[socket.id]) {
+      // In the future, this will remove a specific card for a player
+      // this.players[socket.id].removeCard(cardNumber);
+      this.players[socket.id].removeAllCards();
     }
   }
 
@@ -71,7 +79,8 @@ class Game {
     // });
     // this.bullets = this.bullets.filter(bullet => !destroyedBullets.includes(bullet));
 
-    const destroyedCards = applyCardCollisions(Object.values(this.players), this.cards)
+    const destroyedCards = applyCardCollisions(Object.values(this.players), this.cards);
+    const destroyedPlayers = applyPlayerCollisions(Object.values(this.players));
     this.cards = this.cards.filter(card => !destroyedCards.includes(card));
     destroyedCards.forEach(card => {
       this.createCard(this.cardCount)
@@ -105,9 +114,9 @@ class Game {
 
   getLeaderboard() {
     return Object.values(this.players)
-      .sort((p1, p2) => p2.score - p1.score)
+      .sort((p1, p2) => p2.eats - p1.eats)
       .slice(0, 5)
-      .map(p => ({ username: p.username, score: Math.round(p.score) }));
+      .map(p => ({ username: p.username, score: Math.round(p.score), eats: Math.round(p.eats) }));
   }
 
   createUpdate(player, leaderboard) {

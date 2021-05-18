@@ -8,7 +8,7 @@ module.exports = Object.freeze({
   BULLET_SPEED: 800,
   BULLET_DAMAGE: 10,
 
-  SCORE_BULLET_HIT: 20,
+  SCORE_CARD_BLAST: 10,
   SCORE_PER_SECOND: 0,
 
   CARD_WIDTH: 100,
@@ -19,6 +19,7 @@ module.exports = Object.freeze({
     JOIN_GAME: 'join_game',
     GAME_UPDATE: 'update',
     INPUT: 'input',
+    DELETE_CARD: 'delete_card',
     GAME_OVER: 'dead',
   },
 });

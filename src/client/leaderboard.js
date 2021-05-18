@@ -9,10 +9,12 @@ export function updateLeaderboard(data) {
   for (let i = 0; i < data.length; i++) {
     rows[i + 1].innerHTML = `<td>${escape(data[i].username.slice(0, 15)) || 'Anonymous'}</td><td>${
       data[i].score
+    }</td><td>${
+      data[i].eats
     }</td>`;
   }
   for (let i = data.length; i < 5; i++) {
-    rows[i + 1].innerHTML = '<td>-</td><td>-</td>';
+    rows[i + 1].innerHTML = '<td>-</td><td>-</td><td>-</td>';
   }
 }
 

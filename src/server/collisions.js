@@ -59,4 +59,27 @@ function applyCardCollisions(players, cards) {
   return destroyedCards;
 }
 
-module.exports = { applyCollisions, applyCardCollisions };
+function applyPlayerCollisions(players) {
+  const destroyedPlayers = [];
+  for (let i = 0; i < players.length; i++) {
+    for (let j = i; j < players.length; j++) {
+      const playerOne = players[i];
+      const playerTwo = players[j];
+      if (playerOne.distanceTo(playerTwo) <= Constants.PLAYER_RADIUS * 2) {
+        if (playerOne.score > playerTwo.score) {
+          playerOne.onEatPlayer();
+          playerTwo.getEaten();
+          destroyedPlayers.push(playerTwo)
+        } else if (playerTwo.score > playerOne.score) {
+          playerTwo.onEatPlayer();
+          playerOne.getEaten();
+          destroyedPlayers.push(playerOne)
+        }
+      }
+    }
+  }
+  // For now, we don't use this returned list
+  return destroyedPlayers;
+}
+
+module.exports = { applyCollisions, applyCardCollisions, applyPlayerCollisions };
