@@ -1,22 +1,10 @@
-<h1 align="center">
-    <img alt="An Example .io Game" title="An Example .io Game" src="https://github.com/vzhou842/example-.io-game/blob/master/public/assets/icon.svg" width="140"> <br />
-    An Example .io Game
-</h1>
-<h4 align="center">
-  <a href="https://example-io-game.victorzhou.com">https://example-io-game.victorzhou.com</a>
-</h4>
+# Card Blast!
 
-<p align="center">
-  <a href="https://travis-ci.com/vzhou842/example-.io-game">
-    <img src="https://travis-ci.com/vzhou842/example-.io-game.svg?branch=master" alt="Build Status"></img>
-  </a>
-</p>
-
-An example multiplayer (.io) web game. Read the walkthrough: [**How to Build a Multiplayer (.io) Web Game**](https://victorzhou.com/blog/build-an-io-game-part-1/).
+A multiplayer (.io) web game for learning flash cards!
 
 Built with [Node.js](https://nodejs.org/), [socket.io](https://socket.io/), and [HTML5 Canvas](https://www.w3schools.com/html/html5_canvas.asp).
 
-To see this code with [Flow](https://flow.org/) typing, visit the [flow branch](https://github.com/vzhou842/example-.io-game/tree/flow).
+Built using Victor Zhou's tutorial: [**How to Build a Multiplayer (.io) Web Game**](https://victorzhou.com/blog/build-an-io-game-part-1/).
 
 ## Development
 

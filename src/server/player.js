@@ -58,6 +58,7 @@ class Player extends ObjectClass {
       direction: this.direction,
       // hp: this.hp,
       score: this.score,
+      username: this.username,
       collectedcards: cardString
     };
   }

@@ -19,6 +19,12 @@ const playMenu = document.getElementById('play-menu');
 const playButton = document.getElementById('play-button');
 const usernameInput = document.getElementById('username-input');
 const cardsInput = document.getElementById('cards-input');
+const existingCardsInput = document.getElementById('card-lists');
+const allCardLists = {
+  "spanish": ["dog","perro","cat","gato","girl","chica","boy","chico","money","dinero","red","rojo","blue","azul","green","verde","yellow","amarillo","tree","arbol"],
+  "marathi": ["dog","kutra","cat","manzar","girl","mulgi","boy","mulga","money","paise","red","lal","blue","nirla","green","hirva","yellow","pewrla","tree","zhaad"],
+  "yoyo": ["yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo"]
+}
 
 Promise.all([
   connect(onGameOver),
@@ -32,7 +38,8 @@ Promise.all([
     playMenu.classList.add('hidden');
     initState();
     startCapturingInput();
-    startRendering(cardsInput.value.split(','));
+    const cardsOrExisting = (cardsInput.value.length === 0) ? allCardLists[existingCardsInput.value] : cardsInput.value.split(',')
+    startRendering(cardsOrExisting);
     setLeaderboardHidden(false);
     setCollectedcardsHidden(false);
   };

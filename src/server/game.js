@@ -126,8 +126,11 @@ class Game {
     // const nearbyBullets = this.bullets.filter(
     //   b => b.distanceTo(player) <= Constants.MAP_SIZE / 2,
     // );
+
+    // Changed so that any nearby card can be located! 
+    // Used to by MAP_SIZE / 2
     const nearbyCards = this.cards.filter(
-      c => c.distanceTo(player) <= Constants.MAP_SIZE / 2,
+      c => c.distanceTo(player) <= Constants.MAP_SIZE,
     );
 
     return {

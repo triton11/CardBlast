@@ -84,10 +84,11 @@ function renderPlayer(me, player) {
   } else {
     context.fillStyle = 'black';
   }
-  context.font = "30px Arial";
+  context.font = "20px Arial";
+  context.textAlign = "center";
   context.fillText(
-    player.score,
-    canvas.width / 2 + x - me.x - 10, 
+    String(player.username) + ": " + String(player.score),
+    canvas.width / 2 + x - me.x, 
     canvas.height / 2 + y - me.y + 50
   );
   // context.fillRect(
@@ -139,46 +140,51 @@ function renderCard(me, card) {
   );
   context.fillStyle = 'white';
   context.font = "30px Arial";
+  context.textAlign = "center";
   context.fillText(
     cardList[id % cardList.length], 
-    canvas.width / 2 + x - me.x - CARD_WIDTH, 
-    canvas.height / 2 + y - me.y - CARD_WIDTH / 2 + 30
+    canvas.width / 2 + x - me.x, 
+    canvas.height / 2 + y - me.y
   );
 
   const myCards = me.collectedcards
-  const firstCard = myCards.split(',')[0]
-  const firstCardId = Math.floor(firstCard / 10)
+  const firstCard = myCards
+  const firstCardId = parseInt(firstCard)
+  if (Math.random() < 0.05) {
+    console.log(id % 2 === 0)
+    console.log(firstCardId === id + 1)
+  }
 
-  if ((firstCardId % 2 === 0 && firstCardId + 1 === id) || (firstCardId % 2 === 1 && firstCardId - 1 === id)) {
+  if ((id % 2 === 0 && firstCardId === id + 1) || (id % 2 === 1 && firstCardId === id - 1)) {
     var w = canvas.width / 2 + x - me.x - CARD_WIDTH
     var h = canvas.height / 2 + y - me.y - CARD_WIDTH / 2
-    if (w > canvas.width - 10) {
-      w = canvas.width - 10
+    if (w > canvas.width - 20) {
+      w = canvas.width - 20
     } else if (w < 0) {
       w = 0
     }
-    if (h > canvas.height - 10) {
-      h = canvas.height - 10
+    if (h > canvas.height - 20) {
+      h = canvas.height - 20
     } else if (h < 0) {
       h = 0
     }
     context.fillStyle = 'green';
-    if ((h <= 0 || h >= canvas.height - 10) || (w <= 0 || w >= canvas.width - 10)) {
-      context.fillRect(w, h, 10, 10);
+    if ((h <= 0 || h >= canvas.height - 20) || (w <= 0 || w >= canvas.width - 20)) {
+      context.fillRect(w, h, 15, 15);
     }
   }
 }
 
 function updateCollectedcards(me) {
   const myCards = me.collectedcards
-  const firstCard = myCards.split(',')[0]
+  const firstCard = myCards
 
-  if (firstCard === '-10') {
-    collectedcards.innerHTML = 'My Cards: '
+  if (firstCard === '-1') {
+    collectedcards.innerHTML = 'My Card: '
   } else {
     // I have no idea why there is a zero appended to everything
-    const colorFill = cardFills[Math.floor((firstCard / 10) / cardList.length) % cardFills.length];
-    collectedcards.innerHTML = 'My Cards: ' + cardList[(firstCard / 10) % cardList.length] + ' (' + colorFill + ')';
+    const colorFill = cardFills[Math.floor((firstCard) / cardList.length) % cardFills.length];
+    collectedcards.innerHTML = 'My Card: ' + cardList[(firstCard) % cardList.length] + ' (' + colorFill + ')';
   }
 }
 

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>An example .io game</title>
+  <title>Card Blast</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="shortcut icon" href="/assets/icon64.png">
-  <meta property="description" content="A complete example multiplayer .io web game implemented from scratch. Built with Javascript and Node.js. Open source on Github.">
-  <meta property="og:title" content="An example .io game">
+  <meta property="description" content="Card Blast">
+  <meta property="og:title" content="Card Blast">
   <meta property="og:description" content="A complete example multiplayer .io web game implemented from scratch. Built with Javascript and Node.js. Open source on Github.">
   <meta property="og:image" content="/assets/icon1200.png">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58664433-3"></script>
@@ -23,7 +23,18 @@
     <h1>Welcome to CardBlast</h1>
     <hr />
     <input type="text" id="username-input" placeholder="Username" />
+    <hr />
+    <h3> Use your own list! </h3>
+    <h3>(ex: "cat,gato,dog,perro")</h3>
     <textarea id="cards-input" placeholder="Cards"></textarea>
+    <br />
+    <h3> Or choose a pre-made one: </h3>
+    <select name="card_lists" id="card-lists">
+      <option value="spanish">Spanish</option>
+      <option value="marathi">Marathi</option>
+      <option value="yoyo">YoYo</option>
+    </select>
+    <hr />
     <button id="play-button">PLAY</button>
   </div>
   <div id="leaderboard" class="hidden">
