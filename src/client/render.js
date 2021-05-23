@@ -150,28 +150,42 @@ function renderCard(me, card) {
   const myCards = me.collectedcards
   const firstCard = myCards
   const firstCardId = parseInt(firstCard)
-  if (Math.random() < 0.05) {
-    console.log(id % 2 === 0)
-    console.log(firstCardId === id + 1)
-  }
 
   if ((id % 2 === 0 && firstCardId === id + 1) || (id % 2 === 1 && firstCardId === id - 1)) {
-    var w = canvas.width / 2 + x - me.x - CARD_WIDTH
-    var h = canvas.height / 2 + y - me.y - CARD_WIDTH / 2
-    if (w > canvas.width - 20) {
-      w = canvas.width - 20
-    } else if (w < 0) {
-      w = 0
+    //
+    // TRACKING CUBE
+    //
+    // var w = canvas.width / 2 + x - me.x - CARD_WIDTH
+    // var h = canvas.height / 2 + y - me.y - CARD_WIDTH / 2
+    // if (w > canvas.width - 20) {
+    //   w = canvas.width - 20
+    // } else if (w < 0) {
+    //   w = 0
+    // }
+    // if (h > canvas.height - 20) {
+    //   h = canvas.height - 20
+    // } else if (h < 0) {
+    //   h = 0
+    // }
+    // context.fillStyle = 'green';
+    // if ((h <= 0 || h >= canvas.height - 20) || (w <= 0 || w >= canvas.width - 20)) {
+    //   context.fillRect(w, h, 15, 15);
+    // }
+    //
+    // Hot / Cold indicator
+    const w = x - me.x
+    const h = y - me.y
+    const dist = Math.sqrt(w * w + h * h)
+    if (dist < MAP_SIZE * 0.25) {
+      context.fillStyle = 'green';
+    } else if (dist < MAP_SIZE * 0.5) {
+      context.fillStyle = 'lightgreen';
+    } else if (dist < MAP_SIZE * 0.75) {
+      context.fillStyle = 'orange';
+    } else {
+      context.fillStyle = 'red';
     }
-    if (h > canvas.height - 20) {
-      h = canvas.height - 20
-    } else if (h < 0) {
-      h = 0
-    }
-    context.fillStyle = 'green';
-    if ((h <= 0 || h >= canvas.height - 20) || (w <= 0 || w >= canvas.width - 20)) {
-      context.fillRect(w, h, 15, 15);
-    }
+    context.fillRect(canvas.width / 2 - 15, canvas.height / 2 - PLAYER_RADIUS - 20, 30, 10);
   }
 }
 
@@ -182,9 +196,10 @@ function updateCollectedcards(me) {
   if (firstCard === '-1') {
     collectedcards.innerHTML = 'My Card: '
   } else {
-    // I have no idea why there is a zero appended to everything
-    const colorFill = cardFills[Math.floor((firstCard) / cardList.length) % cardFills.length];
-    collectedcards.innerHTML = 'My Card: ' + cardList[(firstCard) % cardList.length] + ' (' + colorFill + ')';
+    // Used to add a (COLOR) label so you know which card color to look for
+    // const colorFill = cardFills[Math.floor((firstCard) / cardList.length) % cardFills.length];
+    // + ' (' + colorFill + ')'' (' + colorFill + ')'
+    collectedcards.innerHTML = 'My Card: ' + cardList[(firstCard) % cardList.length];
   }
 }
 
