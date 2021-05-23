@@ -22,7 +22,10 @@ const cardsInput = document.getElementById('cards-input');
 const existingCardsInput = document.getElementById('card-lists');
 const allCardLists = {
   "spanish": ["dog","perro","cat","gato","girl","chica","boy","chico","money","dinero","red","rojo","blue","azul","green","verde","yellow","amarillo","tree","arbol"],
+  "spanish-nature": ["animal", "animal", "bird", "pájaro", "bush", "arbusto", "carbon dioxide", "dióxido de carbono", "climate change", "cambio climático", "tree", "árbol", "vegetables", "verduras", "water", "agua", "sun", "sol", "trash", "basura"],
   "marathi": ["dog","kutra","cat","manzar","girl","mulgi","boy","mulga","money","paise","red","lal","blue","nirla","green","hirva","yellow","pewrla","tree","zhaad"],
+  "croatia1": ["I", "jaz", "you", "ti", "he", "on", "we", "mi", "you all", "vi", "they", "oni", "this", "ta/to", "that", "tisti/tista/tisto", "here", "tu/tukaj", "there", "tam"], 
+  "croatia2": ["who?", "kdo", "what?", "kaj", "where?", "kje", "when?", "kdaj", "how?", "kako", "not", "ne", "all", "vse", "many", "veliko", "some", "nekoliko", "few", "malo"],
   "yoyo": ["yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo","yo"]
 }
 
